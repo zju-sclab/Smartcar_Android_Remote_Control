@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        vX = (TextView)findViewById(R.id.vx);
-//        vY = (TextView)findViewById(R.id.vy);
-//        vZ = (TextView)findViewById(R.id.vz);
-//        v = (TextView)findViewById(R.id.v);
         wheel=(Wheel)findViewById(R.id.myWheel);
         seekbar = (SeekBar)findViewById(R.id.seekBar);
         gson = new Gson();
@@ -82,33 +78,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wheel.setOnMyWheelMoveListener(new Wheel.OnMyWheelMoveListener() {
             @Override
             public void onValueChanged(int xDistance, int yDistance) {
-//                v.setText("rotate:" + wheel.getRotate_degree() +", speed:" + seekbar.getProgress());
-            }
-        });
-        ViewTreeObserver vto = seekbar.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                lock.lock();
-                speed = getNormalize(seekbar.getProgress(),0,100,0,7.2  );
-//                Log.e("speed1",Double.toString(speed));
-                lock.unlock();
-            }
-        });
-        ViewTreeObserver vto1 = wheel.getViewTreeObserver();
-        vto1.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                lock1.lock();
                 steer = getNormalize(wheel.getRotate_degree(),-90,90,-30.0,30.0);
-//                Log.e("steer1",Double.toString(steer));
-                lock1.unlock();
+            }
+        });
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                speed = getNormalize(seekbar.getProgress(),0,100,0,7.2  );
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
-
-
-
 
     }
 
@@ -162,10 +150,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Log.e("Bottom", "=" + wheel.getBottom());
                 Log.e("x", "=" + wheel.getX());
                 Log.e("y", "=" + wheel.getY());
-//                wheel.setCenterX(wheel.getLeft() + wheel.getWidth()/2);
-//                wheel.setCenterY(wheel.getTop() + wheel.getHeight()/2);
-//                button.setX(wheel.getLeft() + wheel.getWidth()/2);
-//                button.setY(wheel.getTop() + wheel.getHeight()/2);
                 return true;
             }
         });
@@ -179,11 +163,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
-//            showInfo("事件：" + " x:" + event.values[0] + " y:" + event.values[1] + " z:" + event.values[2]);
-
-//            vX.setText("X: " + event.values[0]);
-//            vY.setText("Gyroscope Y: " + event.values[1]);
-//            vZ.setText("Gyroscope Z: " + event.values[2]);
         }
     }
 
