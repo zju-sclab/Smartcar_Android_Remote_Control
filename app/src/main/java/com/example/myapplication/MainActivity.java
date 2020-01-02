@@ -28,10 +28,10 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager = null;
     private Sensor gyroSensor = null;
-    private TextView vX;
-    private TextView vY;
-    private TextView vZ;
-    private TextView v;
+//    private TextView vX;
+//    private TextView vY;
+//    private TextView vZ;
+//    private TextView v;
     private Wheel wheel;
     private SeekBar seekbar;
     private Gson gson;
@@ -68,10 +68,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        vX = (TextView)findViewById(R.id.vx);
-        vY = (TextView)findViewById(R.id.vy);
-        vZ = (TextView)findViewById(R.id.vz);
-        v = (TextView)findViewById(R.id.v);
+//        vX = (TextView)findViewById(R.id.vx);
+//        vY = (TextView)findViewById(R.id.vy);
+//        vZ = (TextView)findViewById(R.id.vz);
+//        v = (TextView)findViewById(R.id.v);
         wheel=(Wheel)findViewById(R.id.myWheel);
         seekbar = (SeekBar)findViewById(R.id.seekBar);
         gson = new Gson();
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wheel.setOnMyWheelMoveListener(new Wheel.OnMyWheelMoveListener() {
             @Override
             public void onValueChanged(int xDistance, int yDistance) {
-                v.setText("rotate:" + wheel.getRotate_degree() +", speed:" + seekbar.getProgress());
+//                v.setText("rotate:" + wheel.getRotate_degree() +", speed:" + seekbar.getProgress());
             }
         });
         ViewTreeObserver vto = seekbar.getViewTreeObserver();
@@ -182,9 +182,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if(event.sensor.getType() == Sensor.TYPE_GYROSCOPE){
 //            showInfo("事件：" + " x:" + event.values[0] + " y:" + event.values[1] + " z:" + event.values[2]);
 
-            vX.setText("X: " + event.values[0]);
-            vY.setText("Gyroscope Y: " + event.values[1]);
-            vZ.setText("Gyroscope Z: " + event.values[2]);
+//            vX.setText("X: " + event.values[0]);
+//            vY.setText("Gyroscope Y: " + event.values[1]);
+//            vZ.setText("Gyroscope Z: " + event.values[2]);
         }
     }
 
