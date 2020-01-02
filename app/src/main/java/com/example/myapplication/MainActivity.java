@@ -28,15 +28,13 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager = null;
     private Sensor gyroSensor = null;
-//    private TextView vX;
-//    private TextView vY;
-//    private TextView vZ;
-//    private TextView v;
     private Wheel wheel;
     private SeekBar seekbar;
     private Gson gson;
     private double speed;
-    private double steer;
+    private double steer = 0.0;
+    private double pre_steer = 0.0;
+    private double final_steer = 0.0;
     private Lock lock = new ReentrantLock();
     private Lock lock1 = new ReentrantLock();
     private Thread a;
@@ -108,14 +106,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             public void run() {
                 try{
                     while (MyTcpClient.socket != null && MyTcpClient.socket.isConnected()){
-                        //TODO 需要用插值法来缓慢达到目标的值
-//                        double steer = getNormalize(wheel.getRotate_degree(),-90,90,-30.0,30.0);
-//                        double speed = getNormalize(seekbar.getProgress(),0,100,0,10);
+                        //TODO 添加一些提示字段
                         Command c = null;
                         lock.lock();
                         lock1.lock();
-                        c = new Command(speed,steer,0);
-                        Log.e("speed",Double.toString(speed));
+                        //添加了通过插值法来达到目标角度的功能
+                        final_steer = (pre_steer+steer)/2;
+                        c = new Command(speed,final_steer,0);
+                        pre_steer = final_steer;
+                        Log.e("speed",Double.toString(final_steer));
                         Log.e("steer",Double.toString(steer));
                         lock1.unlock();
                         lock.unlock();
