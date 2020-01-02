@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RemoteControl</string>
+    <integer name="default_ip">9005</integer>
+</resources>
