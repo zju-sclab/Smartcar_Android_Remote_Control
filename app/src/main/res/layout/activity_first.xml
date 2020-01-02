@@ -9,6 +9,7 @@
 
     <EditText
             android:id="@+id/ip"
+            android:hint="@string/input_ip"
             android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="56dp"
@@ -27,6 +28,7 @@
 
     <EditText
             android:text="@integer/default_ip"
+            android:hint="@string/input_port"
             android:id="@+id/port"
             android:layout_width="252dp"
             android:layout_height="56dp"
@@ -48,12 +50,13 @@
             android:layout_height="71dp"
             android:layout_x="158dp"
             android:layout_y="414dp"
-            android:text="connect"
+            android:background="@drawable/bt_shape"
+            android:text="@string/connect_hint"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.798"
+            app:layout_constraintHorizontal_bias="0.776"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.464" />
+            app:layout_constraintVertical_bias="0.488" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

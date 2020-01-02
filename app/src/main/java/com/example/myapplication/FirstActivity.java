@@ -45,7 +45,6 @@ public class FirstActivity extends AppCompatActivity {
     }
 
     private void connectTCP() throws IOException {
-        // TODO 一个是不能无限等待下去
         MyTcpClient.startClient(ip,port);
         //获取开始时间 ms为单位
         long startTime=System.currentTimeMillis();

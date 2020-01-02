@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             public void run() {
                 try{
                     while (MyTcpClient.socket != null && MyTcpClient.socket.isConnected()){
-                        //TODO scroll back will lose tcp connection
-                        //TODO thread will be destroyed
+                        //TODO 需要用插值法来缓慢达到目标的值
 //                        double steer = getNormalize(wheel.getRotate_degree(),-90,90,-30.0,30.0);
 //                        double speed = getNormalize(seekbar.getProgress(),0,100,0,10);
                         Command c = null;
