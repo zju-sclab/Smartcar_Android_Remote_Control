@@ -2,6 +2,10 @@
     <string name="app_name">RemoteControl</string>
     <string name="input_ip">请输入IP</string>
     <string name="input_port">请输入端口</string>
+    <string name="init_ip">192.168.</string>
     <string name="connect_hint">点击连接</string>
-    <integer name="default_ip">9005</integer>
+    <string name="first_hint">远程遥控</string>
+    <string name="speed">速度</string>
+    <string name="steer">转角</string>
+    <integer name="default_port">9005</integer>
 </resources>

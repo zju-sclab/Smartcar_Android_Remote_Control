@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Wheel wheel;
     private SeekBar seekbar;
     private Gson gson;
+    private TextView showSpeed;
+    private TextView showSteer;
     private double speed;
     private double steer = 0.0;
     private double pre_steer = 0.0;
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         wheel=(Wheel)findViewById(R.id.myWheel);
         seekbar = (SeekBar)findViewById(R.id.seekBar);
         gson = new Gson();
+        showSpeed = findViewById(R.id.showSpeed);
+        showSteer = findViewById(R.id.showSteer);
         measureOne();
 
         sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
@@ -114,6 +118,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         final_steer = (pre_steer+steer)/2;
                         c = new Command(speed,final_steer,0);
                         pre_steer = final_steer;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                showSpeed.setText(String.format("%.2f", speed));
+                                showSteer.setText(String.format("%.2f", steer));
+                            }
+                        });
+
                         Log.e("speed",Double.toString(final_steer));
                         Log.e("steer",Double.toString(steer));
                         lock1.unlock();
