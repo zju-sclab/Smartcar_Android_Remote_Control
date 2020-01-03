@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     while (MyTcpClient.socket != null && MyTcpClient.socket.isConnected()){
                         //TODO 添加一些提示字段
                         Command c = null;
-                        lock.lock();
-                        lock1.lock();
+//                        lock.lock();
+//                        lock1.lock();
                         //添加了通过插值法来达到目标角度的功能
                         final_steer = (pre_steer+steer)/2;
                         c = new Command(speed,final_steer,0);
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                         Log.e("speed",Double.toString(final_steer));
                         Log.e("steer",Double.toString(steer));
-                        lock1.unlock();
-                        lock.unlock();
+//                        lock1.unlock();
+//                        lock.unlock();
 
                         ProtocalMsg msg = new ProtocalMsg(0x23,254,0,"123",c);
                         //a line end with "\r\n"
