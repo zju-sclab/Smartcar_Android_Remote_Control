@@ -9,4 +9,19 @@ public class AutoActivity extends SingleFragmentActivity {
     protected Fragment createFragment() {
         return new AutoFragment();
     }
+
+    @Override
+    protected void startActivityFunc() {
+
+    }
+
+    @Override
+    protected void pauseActivityFunc() {
+
+    }
+
+    @Override
+    protected void destroyActivityFunc() {
+
+    }
 }

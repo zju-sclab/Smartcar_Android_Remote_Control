@@ -17,6 +17,9 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
     //  TODO 选择模式的界面来管理tcpconnection 实际的页面来管理thread
     // 使用了设计模式 通过fragment来管理页面中的布局变化
     protected abstract Fragment createFragment();
+    protected abstract void startActivityFunc();
+    protected abstract void pauseActivityFunc();
+    protected abstract void destroyActivityFunc();
 //
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,5 +40,23 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
             fragment = createFragment();
             fm.beginTransaction().add(R.id.fragment_container,fragment).commit();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyActivityFunc();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startActivityFunc();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pauseActivityFunc();
     }
 }

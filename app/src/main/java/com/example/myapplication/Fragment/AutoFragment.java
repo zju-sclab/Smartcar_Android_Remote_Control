@@ -18,15 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AutoFragment extends Fragment {
-//    @BindView(R.id.manual_button)
     private Button manualButton;
-//    @BindView(R.id.auto_button)
     private Button autoButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.auto_fragment,container,false);
-//        ButterKnife.bind(this,v);
         manualButton = (Button)v.findViewById(R.id.manual_button);
         return v;
     }
