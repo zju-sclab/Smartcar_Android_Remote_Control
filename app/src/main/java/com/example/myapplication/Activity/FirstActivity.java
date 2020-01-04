@@ -68,8 +68,7 @@ public class FirstActivity extends AppCompatActivity {
                 break;
             }
         }
-//        if(flag)
-//          startActivity(new Intent(this,MainActivity.class));
+
         if(flag)
             startActivity(new Intent(this,AutoActivity.class));
     }

@@ -14,6 +14,7 @@ import com.example.myapplication.R;
 
 public abstract class SingleFragmentActivity extends FragmentActivity {
     //  TODO 自动驾驶模式界面的实现
+    //  TODO 选择模式的界面来管理tcpconnection 实际的页面来管理thread
     // 使用了设计模式 通过fragment来管理页面中的布局变化
     protected abstract Fragment createFragment();
 //
