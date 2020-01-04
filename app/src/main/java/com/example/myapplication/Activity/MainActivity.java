@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,25 +11,27 @@ import android.hardware.SensorEventListener;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.myapplication.Json.Command;
 import com.example.myapplication.Json.ProtocalMsg;
+import com.example.myapplication.R;
 import com.example.myapplication.Utils.MyTcpClient;
 import com.example.myapplication.Utils.Wheel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
-
+//下一个activity可以引入fragment 因为不需要重复创造activity
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager = null;
     private Sensor gyroSensor = null;
     private Wheel wheel;
     private SeekBar seekbar;
+    private Switch aSwitch;
     private Gson gson;
     private TextView showSpeed;
     private TextView showSteer;
@@ -37,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private double steer = 0.0;
     private double pre_steer = 0.0;
     private double final_steer = 0.0;
-    private Lock lock = new ReentrantLock();
-    private Lock lock1 = new ReentrantLock();
+    private boolean isBrake = false;
+    private int brake = 1;
     private Thread a;
 
     private double getNormalize(double val,double old_low,double old_high,double new_low,double new_high){
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
         wheel=(Wheel)findViewById(R.id.myWheel);
         seekbar = (SeekBar)findViewById(R.id.seekBar);
+        aSwitch = (Switch)findViewById(R.id.showbrake);
         gson = new Gson();
         showSpeed = findViewById(R.id.showSpeed);
         showSteer = findViewById(R.id.showSteer);
@@ -100,6 +103,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //打开的回调函数
+                    isBrake = true;
+                }else{
+                    //关闭的回调函数
+                    isBrake = false;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -112,11 +128,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     while (MyTcpClient.socket != null && MyTcpClient.socket.isConnected()){
                         //TODO 添加一些提示字段
                         Command c = null;
-//                        lock.lock();
-//                        lock1.lock();
                         //添加了通过插值法来达到目标角度的功能
                         final_steer = (pre_steer+steer)/2;
-                        c = new Command(speed,final_steer,0);
+                        //如果最后的转角的值过小 则直接设为0
+                        if(final_steer<0.01&&final_steer>-0.01)
+                            final_steer = 0.0;
+                        //brake为1的时候是刹车
+                        if(isBrake)
+                            brake = 1;
+                        else
+                            brake = 0;
+                        if(speed<1)
+                            speed = 0;
+                        c = new Command(speed,final_steer,brake);
                         pre_steer = final_steer;
                         runOnUiThread(new Runnable() {
                             @Override
@@ -125,16 +149,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                                 showSteer.setText(String.format("%.2f", steer));
                             }
                         });
-
                         Log.e("speed",Double.toString(final_steer));
                         Log.e("steer",Double.toString(steer));
-//                        lock1.unlock();
-//                        lock.unlock();
-
                         ProtocalMsg msg = new ProtocalMsg(0x23,254,0,"123",c);
                         //a line end with "\r\n"
                         MyTcpClient.syncSendTcpMessage(gson.toJson(msg)+"\r\n");
-                        Thread.sleep(100);
+                        Thread.sleep(50);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
