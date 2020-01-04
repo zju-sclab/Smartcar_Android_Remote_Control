@@ -8,6 +8,11 @@
     <string name="speed">速度</string>
     <string name="steer">转角</string>
     <string name="brake">刹车</string>
+    <string name="mode_choice">模式选择</string>
+    <string name="manual_driving">进入手动驾驶模式</string>
+    <string name="auto_driving">进入自动驾驶模式</string>
+    <string name="cloud_driving">进入云控驾驶模式</string>
+    <string name="disconnect">断开链接</string>
     <string name="version">v-1.1</string>
     <integer name="default_port">9005</integer>
 </resources>

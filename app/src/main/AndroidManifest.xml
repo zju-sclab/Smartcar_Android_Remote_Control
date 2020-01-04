@@ -23,6 +23,10 @@
                 android:name=".Activity.MainActivity"
                 android:screenOrientation="landscape"
                 />
+        <activity
+                android:name=".Activity.AutoActivity"
+                android:screenOrientation="landscape"
+                />
     </application>
 
 </manifest>

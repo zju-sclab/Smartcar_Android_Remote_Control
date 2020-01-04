@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             public void run() {
                 try{
                     while (MyTcpClient.socket != null && MyTcpClient.socket.isConnected()){
-                        //TODO 添加一些提示字段
                         Command c = null;
                         //添加了通过插值法来达到目标角度的功能
                         final_steer = (pre_steer+steer)/2;
