@@ -13,8 +13,10 @@ import androidx.fragment.app.FragmentManager;
 import com.example.myapplication.R;
 
 public abstract class SingleFragmentActivity extends FragmentActivity {
-    //  TODO 自动驾驶模式界面的实现
+    //  TODO 自动驾驶模式界面的实现 自动驾驶模式下可以显示地图上面的点
+    //  TODO 可以添加重力驾驶模块
     //  TODO 选择模式的界面来管理tcpconnection 实际的页面来管理thread
+    //  TODO 可以传输建成的地图
     // 使用了设计模式 通过fragment来管理页面中的布局变化
     protected abstract Fragment createFragment();
     protected abstract void startActivityFunc();
