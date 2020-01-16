@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:theme="@style/NoTileBar">
 
-        <activity android:name=".FirstActivity"
+        <activity android:name=".Activity.FirstActivity"
                 android:screenOrientation="landscape"
                 >
             <intent-filter>
@@ -20,7 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name=".Activity.MainActivity"
+                android:screenOrientation="landscape"
+                />
+        <activity
+                android:name=".Activity.AutoActivity"
                 android:screenOrientation="landscape"
                 />
     </application>
