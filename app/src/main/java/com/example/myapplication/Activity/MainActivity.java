@@ -26,8 +26,10 @@ import com.example.myapplication.Utils.Wheel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
-//下一个activity可以引入fragment 因为不需要重复创造activity
+/**
+ *  通过重载的createFragment来配置对应activity的页面
+ *  下一个activity可以引入fragment 因为不需要重复创造activity
+ */
 public class MainActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {

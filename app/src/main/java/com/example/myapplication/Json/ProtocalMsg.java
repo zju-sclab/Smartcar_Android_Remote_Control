@@ -8,8 +8,8 @@ public class ProtocalMsg {
     private int ack;
     private int requestId;
     private String vin;
-//    private String data;
     private Command data;
+
     public ProtocalMsg(float version,int type,int ack,int requestId,String vin,Command data){
         this.version = version;
         this.type = type;
@@ -17,8 +17,6 @@ public class ProtocalMsg {
         this.requestId = requestId;
         this.vin = vin;
         this.data = data;
-//        this.data = gson.toJson(data);
-
     }
 
     public ProtocalMsg(int type,int ack,int requestId,String vin,Command data){
@@ -27,6 +25,5 @@ public class ProtocalMsg {
         this.requestId = requestId;
         this.vin = vin;
         this.data = data;
-//        this.data = gson.toJson(data);
     }
 }

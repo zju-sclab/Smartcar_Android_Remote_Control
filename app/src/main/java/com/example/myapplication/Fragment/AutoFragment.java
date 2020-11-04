@@ -17,9 +17,12 @@ import com.example.myapplication.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+/**
+ * AutoActivity对应的碎片 就是选择不同的
+ */
 public class AutoFragment extends Fragment {
     private Button manualButton;
-    private Button autoButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
