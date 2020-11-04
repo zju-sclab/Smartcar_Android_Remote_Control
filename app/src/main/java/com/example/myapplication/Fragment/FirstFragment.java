@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.Activity.AutoActivity;
+import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.Utils.MyTcpClient;
 
@@ -63,10 +64,11 @@ public class FirstFragment extends Fragment {
         while (MyTcpClient.socket==null){
             connectTime = (System.currentTimeMillis()-startTime)/1000;
             if(connectTime>time_out){
+                //标题 内容 图标
                 AlertDialog alertDialog1 = new AlertDialog.Builder(getContext())
-                        .setTitle("Timeout")//标题
-                        .setMessage("IP/PORT INACCURATE!")//内容
-                        .setIcon(R.mipmap.car)//图标
+                        .setTitle("Timeout")
+                        .setMessage("IP/PORT INACCURATE!")
+                        .setIcon(R.mipmap.car)
                         .create();
                 alertDialog1.show();
                 break;
@@ -79,7 +81,9 @@ public class FirstFragment extends Fragment {
             }
         }
 
-        if(flag)
-            startActivity(new Intent(getContext(), AutoActivity.class));
+        if(flag){
+            //连接成功之后 跳转到
+            startActivity(new Intent(getContext(), MainActivity.class));
+        }
     }
 }

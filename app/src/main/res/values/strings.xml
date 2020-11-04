@@ -13,6 +13,6 @@
     <string name="auto_driving">进入自动驾驶模式</string>
     <string name="cloud_driving">进入云控驾驶模式</string>
     <string name="disconnect">断开链接</string>
-    <string name="version">v-1.2</string>
+    <string name="version">v-2.0</string>
     <integer name="default_port">9005</integer>
 </resources>

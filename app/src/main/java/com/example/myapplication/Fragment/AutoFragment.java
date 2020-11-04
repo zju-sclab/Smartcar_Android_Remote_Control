@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Activity.FirstActivity;
 import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.R;
 
@@ -37,7 +38,7 @@ public class AutoFragment extends Fragment {
         manualButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), MainActivity.class));
+                startActivity(new Intent(getContext(), FirstActivity.class));
             }
         });
     }
